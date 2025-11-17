@@ -2,3 +2,5 @@
 
 Reverse-engineered version of j0s0n/scum-wine Docker image,
 hopefully fixing some issues with updates/restarts.
+
+All credits for initial work goes to j0s0n.

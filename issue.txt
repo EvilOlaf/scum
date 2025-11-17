@@ -1,0 +1,37 @@
+
+IMAGE                                                                     CREATED        CREATED BY                                                                                                                                                                                       SIZE      COMMENT
+sha256:a7030b697d818935e6f406cd748f1dcc135d9245021c940baa058bdd6fdaa84e   4 months ago   /opt/start-server.sh                                                                                                                                                                             3.96GB
+<missing>                                                                 4 months ago   /opt/start-server.sh                                                                                                                                                                             3.74GB
+<missing>                                                                 5 months ago   CMD ["/opt/start-server.sh"]                                                                                                                                                                     0B        buildkit.dockerfile.v0
+<missing>                                                                 5 months ago   ENV GSLT_TOKEN=                                                                                                                                                                                  0B        buildkit.dockerfile.v0
+<missing>                                                                 5 months ago   EXPOSE map[27020/udp:{}]                                                                                                                                                                         0B        buildkit.dockerfile.v0
+<missing>                                                                 5 months ago   EXPOSE map[27015/udp:{}]                                                                                                                                                                         0B        buildkit.dockerfile.v0
+<missing>                                                                 5 months ago   EXPOSE map[7777/udp:{}]                                                                                                                                                                          0B        buildkit.dockerfile.v0
+<missing>                                                                 5 months ago   RUN /bin/sh -c chmod +x /opt/start-server.sh # buildkit                                                                                                                                          991B      buildkit.dockerfile.v0
+<missing>                                                                 5 months ago   COPY start-server.sh /opt/start-server.sh # buildkit                                                                                                                                             991B      buildkit.dockerfile.v0
+<missing>                                                                 5 months ago   ENV PATH=/opt/steamcmd:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin                                                                                                              0B        buildkit.dockerfile.v0
+<missing>                                                                 5 months ago   RUN /bin/sh -c mkdir -p /opt/steamcmd && cd /opt/steamcmd &&     wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz &&     tar -xvzf steamcmd_linux.tar.gz # buildkit   8.67MB    buildkit.dockerfile.v0
+<missing>                                                                 5 months ago   WORKDIR /opt                                                                                                                                                                                     0B        buildkit.dockerfile.v0
+<missing>                                                                 5 months ago   RUN /bin/sh -c apt update && apt install -y   curl wget unzip ca-certificates xvfb xauth x11-utils software-properties-common # buildkit                                                         431MB     buildkit.dockerfile.v0
+<missing>                                                                 5 months ago   # debian.sh --arch 'amd64' out/ 'bookworm' '@1749513600'
+
+scum-server2   | ⏳ Initialisiere Wine...
+scum-server2   | 📥 Installiere/aktualisiere SCUM Dedicated Server...
+scum-server2   | WARNING: setlocale('en_US.UTF-8') failed, using locale: 'C'. International characters may not work.
+scum-server2   | Redirecting stderr to '/root/Steam/logs/stderr.txt'
+scum-server2   | Logging directory: '/root/Steam/logs'
+scum-server2   | [  0%] Checking for available updates...
+scum-server2   | [----] Verifying installation...
+scum-server2   | UpdateUI: skip show logo
+scum-server2   | Steam Console Client (c) Valve Corporation - version 1759461699
+scum-server2   | -- type 'quit' to exit --
+scum-server2   | Loading Steam API...IPC function call IClientUtils::GetSteamRealm took too long: 43 msec
+scum-server2   | OK
+scum-server2   | "@sSteamCmdForcePlatformType" = "windows"
+scum-server2   |
+scum-server2   | Connecting anonymously to Steam Public...OK
+scum-server2   | Waiting for client config...OK
+scum-server2   | Waiting for user info...OK
+scum-server2   | Please use force_install_dir before logon!
+scum-server2   | Error! App '3792580' state is 0x6 after update job.
+scum-server2   | Unloading Steam API...OK

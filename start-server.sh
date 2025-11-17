@@ -5,6 +5,7 @@ set -e
 export WINEDEBUG=-all
 export WINEARCH=win64
 export WINEPREFIX=/opt/wine64
+export XDG_RUNTIME_DIR=/tmp
 
 # skip wineboot if initialized already
 if [ ! -d "$WINEPREFIX" ]; then

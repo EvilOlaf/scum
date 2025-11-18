@@ -1,0 +1,16 @@
+services:
+  scum-server:
+    image: ghcr.io/evilolaf/scum:main
+    container_name: scum-server
+    ports:
+      - "7777:7777/udp"
+      - "7777:7777/tcp"
+      - "7778:7778/udp"
+      - "7778:7778/tcp"
+      - "7779:7779/udp"
+      - "7779:7779/tcp"
+      - "27015:27015/udp"
+      - "27015:27015/tcp"
+    volumes:
+      - ./scumserver-data:/opt/scumserver
+    restart: unless-stopped

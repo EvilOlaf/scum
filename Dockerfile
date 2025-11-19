@@ -10,17 +10,31 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-# steamcmd and wine
+# wine, steamcmd
+RUN apt-get install -y wget unzip ca-certificates xvfb xauth x11-utils software-properties-common gnupg
+RUN wget -O - https://dl.winehq.org/wine-builds/winehq.key | gpg --dearmor -o /etc/apt/keyrings/winehq-archive.key -
+RUN wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/bookworm/winehq-bookworm.sources
 RUN dpkg --add-architecture i386
 RUN apt-get update
-RUN apt-get install -y wget unzip ca-certificates xvfb xauth x11-utils lib32gcc-s1 gnupg software-properties-common
-RUN apt-get install -y wine wine64 wine32 libwine libwine:i386 winbind
+RUN apt-get install -y --install-recommends winbind winehq-stable
+
+ENV WINEDEBUG -all
+ENV WINEARCH win64
+ENV WINEPREFIX /opt/wine64
+ENV XDG_RUNTIME_DIR /tmp
+
+RUN wineboot --init
+
 RUN mkdir -p /opt/steamcmd && cd /opt/steamcmd && wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz && tar -xvzf steamcmd_linux.tar.gz
 ENV PATH=/opt/steamcmd:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # scum server run script
 COPY start-server.sh /opt/start-server.sh
 RUN chmod +x /opt/start-server.sh
+
+# cleanup
+RUN apt-get clean
+RUN rm /opt/steamcmd/steamcmd_linux.tar.gz
 
 EXPOSE 27020/udp
 EXPOSE 27015/udp

@@ -1,6 +1,6 @@
 services:
   scum-server:
-    image: ghcr.io/evilolaf/scum:main
+    image: ghcr.io/evilolaf/scum:latest
     container_name: scum-server
     ports:
       - "7777:7777/udp"

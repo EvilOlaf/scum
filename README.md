@@ -21,7 +21,7 @@
 Plain docker command:  
 
 ```bash
-docker run --name scum-server -p 7777:7777/udp -p 7777:7777/tcp -p 7778:7778/udp -p 7778:7778/tcp -p 7779:7779/udp -p 7779:7779/tcp -p 27015:27015/udp -p 27015:27015/tcp -v ./scumserver-data:/opt/scumserver --restart unless-stopped ghcr.io/evilolaf/scum:main
+docker run --name scum-server -p 7777:7777/udp -p 7777:7777/tcp -p 7778:7778/udp -p 7778:7778/tcp -p 7779:7779/udp -p 7779:7779/tcp -p 27015:27015/udp -p 27015:27015/tcp -v ./scumserver-data:/opt/scumserver --restart unless-stopped ghcr.io/evilolaf/scum:latest
 ```
 
 **or**

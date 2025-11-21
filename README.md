@@ -11,7 +11,7 @@
 - - updates steamcmd
 - - installs/updates SCUM dedicated server on startup
  
-### requirements
+### Requirements
 
 - Docker.io, with or without docker compose
 - 8GB memory (absolute bare minimum, COULD work if a swap-file is present but let's be honest, won't be fun. Get 16GB or at least 12GB)
@@ -37,5 +37,5 @@ Reverse-engineered version of j0s0n/scum-wine Docker image...
 ...attempting to fix some of its issues with updates and restarts.
 
 ### Who?
-All credit for the initial work go to j0s0n.
+All credit for the initial work goes to j0s0n.
 

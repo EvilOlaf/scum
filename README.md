@@ -13,7 +13,7 @@
  
 ### Requirements
 
-- Docker.io, with or without docker compose
+- Docker.io with *docker compose*
 - 8GB memory (absolute bare minimum, COULD work if a swap-file is present but let's be honest, won't be fun. Get 16GB or at least 12GB)
 
 ### How to use

@@ -2,6 +2,9 @@ services:
   scum-server:
     image: ghcr.io/evilolaf/scum:latest
     container_name: scum-server
+    environment:
+      - PORT=7777
+      - QUERYPORT=27015
     ports:
       - "7777:7777/udp"
       - "7777:7777/tcp"

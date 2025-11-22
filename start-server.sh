@@ -12,6 +12,6 @@ echo "Starting SCUM dedicated server..."
 xvfb-run --auto-servernum --server-args="-screen 0 1024x768x24" \
   wine /opt/scumserver/SCUM/Binaries/Win64/SCUMServer.exe \
     -log \
-    -port=${PORT-7777} \
-    -QueryPort=${QUERYPORT-27015} \
+    -port=${PORT:-7777} \
+    -QueryPort=${QUERYPORT:-27015} \
     -MaxPlayers=32

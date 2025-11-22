@@ -20,6 +20,7 @@
 
 - Grab the `docker-compose.yml`
 - run `docker compose up -d`
+- Fire up your SCUM game and connect either without port or port 7779
 
 Note: Don't want to use *docker compose*? Check https://www.decomposerize.com/
 
@@ -29,9 +30,9 @@ Defaults:
 - `PORT=7777` (and therefore - as per SCUM servers' weird way to assign ports - also **7778** and **7779**)
 - `QUERYPORT=27015`
 
-When `PORT` and `QUERYPORT` are altered this alteration must be done for the port mapping in docker-compose as well.  
+When `PORT` or `QUERYPORT` are altered this change must reflect the port mapping MUST as well.  
 
-**Example**: 
+**Example excerpt of `docker-compose.yml`**: 
 ```yml
     environment:
       - PORT=10000
@@ -59,5 +60,5 @@ Reverse-engineered version of j0s0n/scum-wine Docker image...
 All credit for the initial work goes to j0s0n.
 
 ### foot notes
-I am pretty sure that some of the port exposurese are unecessary. Though I could not find any clear and straight-forward information which ports and protocols are actually necessary. Also this port calculation weirdness from SCUM does not help much either.  
-Though having too much exposed here should not do any harm either.
+I am certain some port exposures are unnecessary. However, I could not find clear documentation on which ports and protocols are required. The SCUM server's port calculation behavior doesn't help either.  
+Exposing additional ports should not cause any harm.

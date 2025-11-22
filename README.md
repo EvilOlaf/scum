@@ -27,12 +27,12 @@ Note: Don't want to use *docker compose*? Check https://www.decomposerize.com/
 ### How to customize ports
 
 Defaults:
-- `PORT=7777` (and therefore - as per SCUM servers' weird way to assign ports - also **7778** and **7779**)
+- `PORT=7777` and therefore (as per SCUM servers' weird way to assign ports) also **7778** and **7779**
 - `QUERYPORT=27015`
 
-When `PORT` or `QUERYPORT` are altered this change must reflect the port mapping MUST as well.  
+When `PORT` or `QUERYPORT` are altered this change MUST reflect the port mapping as well.  
 
-**Example excerpt of `docker-compose.yml`**: 
+**Example for ports 10000 and 20000**: 
 ```yml
     environment:
       - PORT=10000
@@ -59,6 +59,6 @@ Reverse-engineered version of j0s0n/scum-wine Docker image...
 ### Who?
 All credit for the initial work goes to j0s0n.
 
-### foot notes
+### Footnotes
 I am certain some port exposures are unnecessary. However, I could not find clear documentation on which ports and protocols are required. The SCUM server's port calculation behavior doesn't help either.  
 Exposing additional ports should not cause any harm.

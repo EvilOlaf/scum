@@ -27,7 +27,7 @@ Note: Don't want to use *docker compose*? Check https://www.decomposerize.com/
 ### How to customize ports
 
 Defaults:
-- `PORT=7777` and therefore (as per SCUM servers' weird way to assign ports) also **7778** and **7779**
+- `PORT=7777` and therefore (as per SCUM server's weird way to assign ports) also **7778** and **7779**
 - `QUERYPORT=27015`
 
 When `PORT` or `QUERYPORT` are altered this change MUST reflect the port mapping as well.  
@@ -47,6 +47,8 @@ When `PORT` or `QUERYPORT` are altered this change MUST reflect the port mapping
       - "20000:20000/udp"
       - "20000:20000/tcp"
 ```
+
+You SCUM game now needs port **10002** for connection.
 
 
 ## Non-technical

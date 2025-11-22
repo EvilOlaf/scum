@@ -18,16 +18,15 @@
 
 ### How to use
 
-Plain docker command:  
+- Grab the `docker-compose.yml`
+- run `docker compose up -d`
 
-```bash
-docker run --name scum-server -p 7777:7777/udp -p 7777:7777/tcp -p 7778:7778/udp -p 7778:7778/tcp -p 7779:7779/udp -p 7779:7779/tcp -p 27015:27015/udp -p 27015:27015/tcp -v ./scumserver-data:/opt/scumserver --restart unless-stopped ghcr.io/evilolaf/scum:latest
-```
+### How to customize ports
 
-**or**
+By default the ports **7777** (and therefore - as per SCUM servers' weird way to assign ports - also **7778** and **7779**) and the query port **27015**.  
+When `PORT` and `QUERYPORT` are altered this alteration must be done for the port mapping in docker-compose as well.  
 
-`docker compose` using the example file.
-
+**Example**: 
 
 ## Non-technical
 ### What?

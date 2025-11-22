@@ -19,11 +19,11 @@
 ### How to use
 
 - Grab the `docker-compose.yml`
-- run `docker compose up -d`
-- be patient, this takes a while
+- run `docker compose up -d` and **be patient**[^1]
 - Fire up your SCUM game and connect either without port or port 7779
 
 Note: Don't want to use *docker compose*? Check https://www.decomposerize.com/
+
 
 ### How to customize ports
 
@@ -65,3 +65,5 @@ All credit for the initial work goes to j0s0n.
 ### Footnotes
 I am certain some port exposures are unnecessary. However, I could not find clear documentation on which ports and protocols are required. The SCUM server's port calculation behavior doesn't help either.  
 Exposing additional ports should not cause any harm.
+
+[^1]: Use `docker compose logs` to check the process. Once you see something like `scum-server  | LogBattlEye: Display: Config entry: MasterPort 8037` in the logs, your game server should be ready to accept player connections.

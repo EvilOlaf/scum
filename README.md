@@ -49,8 +49,7 @@ When `PORT` or `QUERYPORT` are altered this change MUST reflect the port mapping
       - "20000:20000/tcp"
 ```
 
-You SCUM game now needs port **10002** for connection.
-
+The port for players to connect is now **10002**.
 
 ## Non-technical
 ### What?

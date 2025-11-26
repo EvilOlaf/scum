@@ -1,7 +1,20 @@
 #!/bin/bash
 set -e
 
-echo "Installing/updating steamcmd and SCUM dedicated server..."
+# skip download of steamdcmd if it is there already
+if [ ! -f /opt/steamcmd/steamcmd.sh ]; then
+    echo "SteamCMD not found. Installing..."
+    mkdir -p /opt/steamcmd && \
+    cd /opt/steamcmd && \
+    wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz && \
+    tar -xvzf steamcmd_linux.tar.gz && \
+    rm /opt/steamcmd/steamcmd_linux.tar.gz && \
+    echo "SteamCMD successfully installed" 
+else
+    echo "SteamCMD found, skipping installation..."
+fi
+
+echo "Update SteamCMD and SCUM dedicated server..."
 /opt/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType windows \
   +force_install_dir /opt/scumserver \
   +login anonymous \

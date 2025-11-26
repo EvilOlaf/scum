@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-# skip download of steamdcmd if it is there already
+# skip download of SteamCMD if present already
 if [ ! -f /opt/steamcmd/steamcmd.sh ]; then
     echo "SteamCMD not found. Installing..."
     mkdir -p /opt/steamcmd && \

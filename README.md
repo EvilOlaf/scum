@@ -6,9 +6,8 @@
 
 - stripped down Debian Bookworm with [Wine 10.0](https://gitlab.winehq.org/wine/wine/-/releases/wine-10.0)
 - pre-configured 64-bit Wine prefix
-- pre-installed [steamcmd](https://developer.valvesoftware.com/wiki/SteamCMD)
 - SCUM server startup script, which
-- - updates steamcmd
+- - installs/updates [steamcmd](https://developer.valvesoftware.com/wiki/SteamCMD)
 - - installs/updates SCUM dedicated server on startup
  
 ### Requirements
@@ -50,6 +49,12 @@ When `PORT` or `QUERYPORT` are altered this change MUST reflect the port mapping
 ```
 
 The port for players to connect is now **10002**.
+
+### How to customize SCUM server
+
+All server data is exposed in the `scumserver-data` folder.  
+For further information check [here](https://www.google.com/search?q=scum+server+settings).
+
 
 ## Non-technical
 ### What?

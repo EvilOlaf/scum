@@ -6,7 +6,7 @@ if [ ! -f /opt/steamcmd/steamcmd.sh ]; then
     echo "SteamCMD not found. Installing..."
     mkdir -p /opt/steamcmd && \
     cd /opt/steamcmd && \
-    wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz && \
+    wget --timeout=30 --tries=3 https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz && \
     tar -xvzf steamcmd_linux.tar.gz && \
     rm /opt/steamcmd/steamcmd_linux.tar.gz && \
     echo "SteamCMD successfully installed" 

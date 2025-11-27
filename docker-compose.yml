@@ -15,7 +15,6 @@ services:
       - "7779:7779/tcp"
       - "27015:27015/udp"
       - "27015:27015/tcp"
-      
     volumes:
       - ./scumserver-data:/opt/scumserver:z
       - ./steamcmd:/opt/steamcmd:z

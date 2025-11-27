@@ -5,6 +5,7 @@ services:
     environment:
       - PORT=7777
       - QUERYPORT=27015
+      - MAXPLAYERS=32
     ports:
       - "7777:7777/udp"
       - "7777:7777/tcp"

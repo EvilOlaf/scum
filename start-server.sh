@@ -27,4 +27,4 @@ xvfb-run --auto-servernum --server-args="-screen 0 1024x768x24" \
     -log \
     -port=${PORT:-7777} \
     -QueryPort=${QUERYPORT:-27015} \
-    -MaxPlayers=32
+    -MaxPlayers=${MAXPLAYERS:-32}

@@ -58,10 +58,7 @@ For further information check [here](https://www.google.com/search?q=scum+server
 ### Which Docker image? `main` or `latest`?
 
 Images tagged as `latest` are **tested and known to work.**
-
-**Any** other are automated untested builds. Do not use...or do but don't complain about breakage.   
-I tend to break things randomly. You have been warned.
-
+Any other tag represents active development and/or automated **untested** builds.  
 
 ## Non-technical
 ### What?

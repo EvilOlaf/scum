@@ -55,6 +55,13 @@ The port for players to connect is now **10002**.
 All server data is exposed in the `scumserver-data` folder.  
 For further information check [here](https://www.google.com/search?q=scum+server+settings).
 
+### Which Docker image? `main` or `latest`?
+
+Images tagged as `latest` are **tested and known to work.**
+
+**Any** other are automated untested builds. Do not use...or do but don't complain about breakage.   
+I tend to break things randomly. You have been warned.
+
 
 ## Non-technical
 ### What?

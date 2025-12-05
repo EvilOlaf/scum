@@ -55,6 +55,14 @@ The port for players to connect is now **10002**.
 All server data is exposed in the `scumserver-data` folder.  
 For further information check [here](https://www.google.com/search?q=scum+server+settings).
 
+### How to automatically restart every X hours?
+
+This image does not come with an automated way to periodically restart.  
+Though this should be easy enough to setup using a *cronjob*, like  
+`0 */6 * * * YourDockerUser cd /path/to/docker/compose/file && docker compose restart`  
+Depending on your OS, the command might be `docker-compose` instead of `docker compose`.
+Needs different time or interval but lacking knowledge of cron? Check [crontab.guru](https://crontab.guru/)
+
 ### Which Docker image? `main` or `latest`?
 
 Images tagged as `latest` are **tested and known to work.**  

@@ -29,7 +29,7 @@ In your `docker-compose.yml` adjust `PORT`[^2] and `QUERYPORT`.
 > [!WARNING]
 > When `PORT` or `QUERYPORT` are altered, this change MUST reflect the port mapping as well.  
 > <details>
->  <summary>Example for ports 10000 and 20000:</summary>
+> <summary>Example for ports 10000 and 20000:</summary>
 >  
 >```yml
 >    environment:

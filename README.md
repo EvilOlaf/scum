@@ -10,6 +10,7 @@
 
 ### :arrow_right: Requirements
 
+- Linux
 - Docker.io with *docker compose*
 - 8GB memory (absolute bare minimum, get 16GB or **at least** 12GB. 32GB or even more for large servers)
 

@@ -19,7 +19,7 @@
 2. run `docker compose up -d` and **be patient**[^1]
 3. Fire up your SCUM game and connect either without port or port 7779
 
-Note: Don't want to use *docker compose*? Check https://www.decomposerize.com/
+Note: Don't want to use *docker compose*? Check [decomposerize](https://www.decomposerize.com/).
 
 
 ### :question: How to customize ports

@@ -1,5 +1,13 @@
 # SCUM Dedicated Server - dockerized
 
+## Quick start
+
+1. Grab the `docker-compose.yml`
+2. run `docker compose up -d` and **be patient**[^1]
+3. Fire up your *SCUM game* and connect using either no port or port 7779
+
+<hr>
+
 ### :arrow_right: Docker image contents
 
 - slim *Debian Bookworm* with [*Wine* 10.0](https://gitlab.winehq.org/wine/wine/-/releases/wine-10.0)
@@ -14,14 +22,9 @@
 - *Docker.io* with *docker compose*
 - 8GB memory (absolute bare minimum, get 16GB or **at least** 12GB. 32GB or even more for large servers)
 
-### :arrow_right: How to use
+### :question: How to use plain *Docker* without *compose*
 
-1. Grab the `docker-compose.yml`
-2. run `docker compose up -d` and **be patient**[^1]
-3. Fire up your *SCUM game* and connect using either no port or port 7779
-
-Note: Don't want to use *docker compose*? Check [decomposerize](https://www.decomposerize.com/).
-
+Don't want to use *docker compose*? Check [decomposerize](https://www.decomposerize.com/).
 
 ### :question: How to customize ports
 
@@ -55,7 +58,7 @@ In your `docker-compose.yml` adjust `PORT`[^2] and `QUERYPORT`.
 All server data is exposed in the `scumserver-data` folder.  
 For further information check [here](https://www.google.com/search?q=scum+server+settings).
 
-### :question: How to automatically restart every X hours?
+### :question: How to automatically restart every X hours
 
 This image does not come with an automated way to periodically restart.  
 Though this should be easy enough to setup using a `cronjob`, like  

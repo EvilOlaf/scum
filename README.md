@@ -76,9 +76,21 @@ I am certain some port exposures are unnecessary. However, I could not find clea
 
 This image started as reverse-engineered[^3] version of the *j0s0n/scum-wine* Docker image. It attempts to fix some of its issues relating to updates and restarts and perhaps adds some enhancements. All credit for the initial work goes to j0s0n.
 
-[^1]: Use `docker compose logs` to check the process. Once you see something like `scum-server  | LogBattlEye: Display: Config entry: MasterPort 8037` in the logs, your game server should be ready to accept player connections.
+[^1]: Use `docker compose logs -f` to check the process.  
+Once you see something like `scum-server  | LogBattlEye: Display: Config entry: MasterPort 8037`  
+in the logs, your game server should be ready to accept player connections.
 
 [^2]: SCUM has a weird way to assign the ports necessary for gameplay. It will always use two ports right after the assigned `PORT`. For example if your `PORT` is 7777, then it will always use 7778 and 7779 for various things as well. This also results in being 7779 the port for players to connect even though 7777 is configure. Ridiculous and dumb IMHO but it is what it is.
 
 [^3]: As the author of the original image [seems reluctant to provide the *Dockerfile*](https://steamcommunity.com/app/513710/discussions/0/603033663617122208/?ctp=3#c678482693017642366), I decided to take matters into my own hands.  
 For the reason above the original image should be considered closed-source/proprietary.
+
+[![EvilOlaf - scum](https://img.shields.io/static/v1?label=EvilOlaf&message=scum&color=blue&logo=github)](https://github.com/EvilOlaf/scum "Go to GitHub repo")
+[![stars - scum](https://img.shields.io/github/stars/EvilOlaf/scum?style=social)](https://github.com/EvilOlaf/scum)
+[![forks - scum](https://img.shields.io/github/forks/EvilOlaf/scum?style=social)](https://github.com/EvilOlaf/scum)
+[![GitHub tag](https://img.shields.io/github/tag/EvilOlaf/scum?include_prereleases=&sort=semver&color=blue)](https://github.com/EvilOlaf/scum/releases/)
+![maintained - yes](https://img.shields.io/badge/maintained-yes-blue)
+[![OS - Linux](https://img.shields.io/badge/OS-Linux-blue?logo=linux&logoColor=white)](https://www.linux.org/ "Go to Linux homepage")
+[![Made with Docker](https://img.shields.io/badge/Made_with-Docker-blue?logo=docker&logoColor=white)](https://www.docker.com/ "Go to Docker homepage")
+
+

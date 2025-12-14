@@ -1,6 +1,6 @@
 # SCUM Dedicated Server - dockerized
 
-## Quick start
+## :checkered_flag: Quick start
 
 1. Grab the `docker-compose.yml`
 2. run `docker compose up -d` and **be patient**[^1]

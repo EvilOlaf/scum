@@ -34,7 +34,7 @@ In your `docker-compose.yml` adjust `GAMEPORT`[^2] and `QUERYPORT`.
 > When `GAMEPORT` or `QUERYPORT` are altered, this change MUST reflect the port mapping as well.  
 > <details>
 > <summary>Example for ports 10000 and 20000:</summary>
->  
+>
 >```yml
 >    environment:
 >      - GAMEPORT=10000

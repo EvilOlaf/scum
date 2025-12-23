@@ -3,7 +3,7 @@ services:
     image: ghcr.io/evilolaf/scum:latest
     container_name: scum-server
     environment:
-      - PORT=7777
+      - GAMEPORT=7777
       - QUERYPORT=27015
       - MAXPLAYERS=32
     ports:

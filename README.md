@@ -28,16 +28,16 @@ Don't want to use *docker compose*? Check [decomposerize](https://www.decomposer
 
 ### :question: How to customize ports
 
-In your `docker-compose.yml` adjust `PORT`[^2] and `QUERYPORT`.
+In your `docker-compose.yml` adjust `GAMEPORT`[^2] and `QUERYPORT`.
 
 > [!WARNING]
-> When `PORT` or `QUERYPORT` are altered, this change MUST reflect the port mapping as well.  
+> When `GAMEPORT` or `QUERYPORT` are altered, this change MUST reflect the port mapping as well.  
 > <details>
 > <summary>Example for ports 10000 and 20000:</summary>
 >  
 >```yml
 >    environment:
->      - PORT=10000
+>      - GAMEPORT=10000
 >      - QUERYPORT=20000
 >    ports:
 >      - "10000:10000/udp"
@@ -80,7 +80,7 @@ This image started as reverse-engineered[^3] version of the *j0s0n/scum-wine* Do
 Once you see something like `scum-server  | LogBattlEye: Display: Config entry: MasterPort 8037`  
 in the logs, your game server should be ready to accept player connections.
 
-[^2]: SCUM has a weird way to assign the ports necessary for gameplay. It will always use two ports right after the assigned `PORT`. For example if your `PORT` is 7777, then it will always use 7778 and 7779 for various things as well. This also results in being 7779 the port for players to connect even though 7777 is configure. Ridiculous and dumb IMHO but it is what it is.
+[^2]: SCUM has a weird way to assign the ports necessary for gameplay. It will always use two ports right after the assigned `GAMEPORT`. For example if your `GAMEPORT` is 7777, then it will always use 7778 and 7779 for various things as well. This also results in being 7779 the port for players to connect even though 7777 is configure. Ridiculous and dumb IMHO but it is what it is.
 
 [^3]: As the author of the original image [seems reluctant to provide the *Dockerfile*](https://steamcommunity.com/app/513710/discussions/0/603033663617122208/?ctp=3#c678482693017642366), I decided to take matters into my own hands.  
 For the reason above the original image should be considered closed-source/proprietary.
@@ -92,5 +92,3 @@ For the reason above the original image should be considered closed-source/propr
 ![maintained - yes](https://img.shields.io/badge/maintained-yes-blue)
 [![OS - Linux](https://img.shields.io/badge/OS-Linux-blue?logo=linux&logoColor=white)](https://www.linux.org/ "Go to Linux homepage")
 [![Made with Docker](https://img.shields.io/badge/Made_with-Docker-blue?logo=docker&logoColor=white)](https://www.docker.com/ "Go to Docker homepage")
-
-

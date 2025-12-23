@@ -5,7 +5,8 @@ set -e
 # if PORT is still used in docker-compose.yml, move its value to GAMEPORT and warn user.
 if [[ -n "${PORT}" ]]; then
     echo 'ATTENTION!'
-    echo '"PORT" environment variable is deprecated!'
+    echo '"PORT" environment variable is deprecated'
+    echo 'and will be removed at some point.'
     echo 'Replace with "GAMEPORT" in your docker-compose.yml.'
     echo 'ATTENTION!'
     GAMEPORT="${GAMEPORT:-$PORT}"

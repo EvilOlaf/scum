@@ -1,6 +1,17 @@
 #!/bin/bash
 set -e
 
+# workaround to avoid breaking existing installations
+# if PORT is still used in docker-compose.yml, move its value to GAMEPORT and warn user.
+if [[ -n "${PORT}" ]]; then
+    echo 'ATTENTION!'
+    echo '"PORT" environment variable is deprecated'
+    echo 'and will be removed at some point.'
+    echo 'Replace with "GAMEPORT" in your docker-compose.yml.'
+    echo 'ATTENTION!'
+    GAMEPORT="${GAMEPORT:-$PORT}"
+fi
+
 # skip download of SteamCMD if present already
 if [ ! -f /opt/steamcmd/steamcmd.sh ]; then
     echo "SteamCMD not found. Installing..."
@@ -25,6 +36,6 @@ echo "Starting SCUM dedicated server..."
 xvfb-run --auto-servernum --server-args="-screen 0 1024x768x24" \
   wine /opt/scumserver/SCUM/Binaries/Win64/SCUMServer.exe \
     -log \
-    -port=${PORT:-7777} \
+    -port=${GAMEPORT:-7777} \
     -QueryPort=${QUERYPORT:-27015} \
     -MaxPlayers=${MAXPLAYERS:-32}

@@ -15,9 +15,9 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 RUN apt-get update && apt-get upgrade -y && apt-get install -y locales
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
 
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US:en
+ENV LC_ALL=en_US.UTF-8
 
 # wine, steamcmd
 RUN apt-get install -y wget unzip ca-certificates xvfb xauth x11-utils software-properties-common gnupg
@@ -25,10 +25,10 @@ RUN wget -O - https://dl.winehq.org/wine-builds/winehq.key | gpg --dearmor -o /e
 RUN wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/bookworm/winehq-bookworm.sources
 RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y --install-recommends winbind winehq-stable && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-ENV WINEDEBUG -all
-ENV WINEARCH win64
-ENV WINEPREFIX /opt/wine64
-ENV XDG_RUNTIME_DIR /tmp
+ENV WINEDEBUG=-all
+ENV WINEARCH=win64
+ENV WINEPREFIX=/opt/wine64
+ENV XDG_RUNTIME_DIR=/tmp
 ENV PATH=/opt/steamcmd:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 RUN wineboot --init

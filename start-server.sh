@@ -62,8 +62,6 @@ shutdown() {
     exit 0
 }
 
-trap shutdown SIGTERM SIGINT
-
 # Start server in background so we can handle signals
 xvfb-run --auto-servernum --server-args="-screen 0 1024x768x24" \
   wine /opt/scumserver/SCUM/Binaries/Win64/SCUMServer.exe \
@@ -92,6 +90,9 @@ if [ -z "$SCUM_PID" ]; then
     echo "ERROR: SCUMServer.exe process not found after 30 seconds"
     exit 1
 fi
+
+# Now that SCUM_PID is known, set up signal handlers
+trap shutdown SIGTERM SIGINT
 
 # Wait for server process
 wait $WRAPPER_PID

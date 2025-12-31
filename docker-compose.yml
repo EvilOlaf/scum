@@ -2,6 +2,7 @@ services:
   scum-server:
     image: ghcr.io/evilolaf/scum:latest
     container_name: scum-server
+    stop_grace_period: 35s
     environment:
       - GAMEPORT=7777
       - QUERYPORT=27015

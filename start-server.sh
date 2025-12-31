@@ -39,7 +39,7 @@ shutdown() {
     if [ -n "$SERVER_PID" ]; then
         kill -TERM "$SERVER_PID" 2>/dev/null || true
         # Wait up to 30 seconds for graceful shutdown
-        for i in {1..30}; do
+        for _ in {1..30}; do
             if ! kill -0 "$SERVER_PID" 2>/dev/null; then
                 echo "Server stopped gracefully"
                 exit 0

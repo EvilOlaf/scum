@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 # workaround to avoid breaking existing installations
 # if PORT is still used in docker-compose.yml, move its value to GAMEPORT and warn user.
@@ -33,9 +32,39 @@ echo "Update SteamCMD and SCUM dedicated server..."
   +quit
 
 echo "Starting SCUM dedicated server..."
+
+# Handle shutdown signals gracefully
+shutdown() {
+    echo "Received shutdown signal, stopping server..."
+    if [ -n "$SERVER_PID" ]; then
+        kill -TERM "$SERVER_PID" 2>/dev/null || true
+        # Wait up to 30 seconds for graceful shutdown
+        for i in {1..30}; do
+            if ! kill -0 "$SERVER_PID" 2>/dev/null; then
+                echo "Server stopped gracefully"
+                exit 0
+            fi
+            sleep 1
+        done
+        echo "Server did not stop in time, forcing shutdown..."
+        kill -KILL "$SERVER_PID" 2>/dev/null || true
+    fi
+    exit 0
+}
+
+trap shutdown SIGTERM SIGINT
+
+# Start server in background so we can handle signals
 xvfb-run --auto-servernum --server-args="-screen 0 1024x768x24" \
   wine /opt/scumserver/SCUM/Binaries/Win64/SCUMServer.exe \
     -log \
     -port=${GAMEPORT:-7777} \
     -QueryPort=${QUERYPORT:-27015} \
-    -MaxPlayers=${MAXPLAYERS:-32}
+    -MaxPlayers=${MAXPLAYERS:-32} \
+    &
+
+SERVER_PID=$!
+echo "Server started with PID $SERVER_PID"
+
+# Wait for server process
+wait $SERVER_PID

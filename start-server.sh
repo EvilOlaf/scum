@@ -41,8 +41,8 @@ shutdown() {
         echo "Sending SIGINT to SCUMServer.exe (PID $SCUM_PID)..."
         kill -INT "$SCUM_PID" 2>/dev/null || true
 
-        # Wait up to 30 seconds for graceful shutdown
-        for _ in {1..30}; do
+        # Wait up to 60 seconds for graceful shutdown
+        for _ in {1..60}; do
             if ! kill -0 "$SCUM_PID" 2>/dev/null; then
                 echo "Server stopped gracefully"
                 exit 0

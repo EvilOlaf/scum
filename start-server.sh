@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 # workaround to avoid breaking existing installations
 # if PORT is still used in docker-compose.yml, move its value to GAMEPORT and warn user.
@@ -25,6 +24,7 @@ else
     echo "SteamCMD found, skipping installation..."
 fi
 
+# update SteamCMD and SCUM dedicated server
 echo "Update SteamCMD and SCUM dedicated server..."
 /opt/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType windows \
   +force_install_dir /opt/scumserver \
@@ -33,9 +33,69 @@ echo "Update SteamCMD and SCUM dedicated server..."
   +quit
 
 echo "Starting SCUM dedicated server..."
+
+# Handle shutdown signals gracefully
+shutdown() {
+    echo "Received shutdown signal, stopping server..."
+    if [ -n "$SCUM_PID" ]; then
+        echo "Sending SIGINT to SCUMServer.exe (PID $SCUM_PID)..."
+        kill -INT "$SCUM_PID" 2>/dev/null || true
+
+        # Wait up to 30 seconds for graceful shutdown
+        for _ in {1..30}; do
+            if ! kill -0 "$SCUM_PID" 2>/dev/null; then
+                echo "Server stopped gracefully"
+                exit 0
+            fi
+            sleep 1
+        done
+
+        echo "Server did not stop in time, forcing shutdown..."
+        kill -KILL "$SCUM_PID" 2>/dev/null || true
+    fi
+
+    # Also stop the xvfb-run wrapper to clean up
+    if [ -n "$WRAPPER_PID" ]; then
+        kill -TERM "$WRAPPER_PID" 2>/dev/null || true
+    fi
+
+    exit 0
+}
+
+trap shutdown SIGTERM SIGINT
+
+# Start server in background so we can handle signals
 xvfb-run --auto-servernum --server-args="-screen 0 1024x768x24" \
   wine /opt/scumserver/SCUM/Binaries/Win64/SCUMServer.exe \
     -log \
     -port=${GAMEPORT:-7777} \
     -QueryPort=${QUERYPORT:-27015} \
-    -MaxPlayers=${MAXPLAYERS:-32}
+    -MaxPlayers=${MAXPLAYERS:-32} \
+    &
+
+WRAPPER_PID=$!
+echo "Server wrapper started with PID $WRAPPER_PID"
+
+# Wait for SCUMServer.exe to appear and get its PID
+echo "Waiting for SCUMServer.exe process..."
+SCUM_PID=""
+for _ in {1..30}; do
+    SCUM_PID=$(pgrep -f "SCUMServer.exe.*-port" | head -1)
+    if [ -n "$SCUM_PID" ]; then
+        echo "SCUMServer.exe found with PID $SCUM_PID"
+        break
+    fi
+    sleep 1
+done
+
+if [ -z "$SCUM_PID" ]; then
+    echo "ERROR: SCUMServer.exe process not found after 30 seconds"
+    exit 1
+fi
+
+# Wait for server process
+wait $WRAPPER_PID
+exit_code=$?
+echo "Server exited with code $exit_code"
+exit $exit_code
+

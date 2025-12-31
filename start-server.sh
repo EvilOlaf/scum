@@ -78,7 +78,7 @@ echo "Server wrapper started with PID $WRAPPER_PID"
 echo "Waiting for SCUMServer.exe process..."
 SCUM_PID=""
 for _ in {1..30}; do
-    SCUM_PID=$(pgrep -f "SCUMServer.exe.*-port" | head -1)
+    SCUM_PID="$(pgrep -f "SCUMServer.exe.*-port" | head -1)"
     if [ -n "$SCUM_PID" ]; then
         echo "SCUMServer.exe found with PID $SCUM_PID"
         break

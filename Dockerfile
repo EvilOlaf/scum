@@ -20,7 +20,7 @@ ENV LANGUAGE=en_US:en
 ENV LC_ALL=en_US.UTF-8
 
 # wine, steamcmd
-RUN apt-get install -y wget unzip ca-certificates xvfb xauth x11-utils software-properties-common gnupg
+RUN apt-get install -y wget unzip ca-certificates xvfb xauth x11-utils software-properties-common gnupg procps
 RUN wget -O - https://dl.winehq.org/wine-builds/winehq.key | gpg --dearmor -o /etc/apt/keyrings/winehq-archive.key -
 RUN wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/bookworm/winehq-bookworm.sources
 RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y --install-recommends winbind winehq-stable && apt-get clean && rm -rf /var/lib/apt/lists/*

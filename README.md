@@ -1,10 +1,14 @@
 # SCUM Dedicated Server - dockerized
 
+> **What is this?**  
+> A Docker container that runs a SCUM dedicated server on Linux.  
+> No manual Wine setup needed — everything is pre-configured and ready to go.
+
 ## :checkered_flag: Quick start
 
-1. Grab the `docker-compose.yml`
-2. run `docker compose up -d` and **be patient**[^1]
-3. Fire up your *SCUM game* and connect using either no port or port 7779
+1. Download `docker-compose.yml`
+2. Run `docker compose up -d` and **be patient**[^1]
+3. Launch *SCUM* and connect to your server using port 7779
 
 <hr>
 
@@ -15,12 +19,13 @@
 - *SCUM server* startup script, which
 - - installs/updates [*steamcmd*](https://developer.valvesoftware.com/wiki/SteamCMD)
 - - installs/updates *SCUM dedicated server* on startup
+- - runs a watchdog to avoid crashes due to low memory
 
 ### :arrow_right: Requirements
 
 - *Linux*
 - *Docker.io* with *docker compose*
-- 8GB memory (absolute bare minimum, get 16GB or **at least** 12GB. 32GB or even more for large servers)
+- 8GB free memory (bare minimum — 16GB+ recommended)
 
 ### :question: How to use plain *Docker* without *compose*
 
@@ -55,13 +60,14 @@ In your `docker-compose.yml` adjust `GAMEPORT`[^2] and `QUERYPORT`.
 
 ### :question: How to customize *SCUM server*
 
-All server data is exposed in the `scumserver-data` folder.  
-For further information check [here](https://www.google.com/search?q=scum+server+settings).
+Server config files are in the `scumserver-data` folder. 
+Providing instructions for in-game customization would be out of scope of this project.  
+Therefore please refer to [Google](https://www.google.com/search?q=scum+server+settings).
 
 ### :question: How to automatically restart every X hours
 
 This image does not come with an automated way to periodically restart.  
-Though this should be easy enough to setup using a `cronjob`, like  
+You can set this up using a scheduled task (`cronjob`), like this:
 `0 */6 * * * YourDockerUser cd /path/to/docker/compose/file && docker compose restart`  
 Need different time or interval but lacking knowledge of cron? Check [crontab.guru](https://crontab.guru/)
 
@@ -69,8 +75,9 @@ Need different time or interval but lacking knowledge of cron? Check [crontab.gu
 
 In your `docker-compose.yml` set `ADDITIONALFLAGS=-nobattleye`.  
 
-### How to configure memory watchdog[^4]
+### :question: How to configure memory watchdog[^4]
 
+Edit your `docker-compose.yml` file:
 ```yaml
 environment:
   - MEMORY_THRESHOLD_PERCENT=95 # Stop SCUM server when system-wide memory usage exceeds %. Set 0 to disable
@@ -84,28 +91,25 @@ Any other tag represents active development and/or automated **untested** builds
 
 ## :information_source: Footnotes
 
-I am certain some port exposures are unnecessary. However, I could not find clear documentation on which ports and protocols are actually required. The SCUM server's port calculation behaviour doesn't help either. Exposing additional ports should not cause any harm.
+Some port exposures are unnecessary. However, I could not find clear documentation which ports and protocols are actually required. Exposing additional ports/protocols won't cause harm.
 
-This image started as reverse-engineered[^5] version of the *j0s0n/scum-wine* Docker image. It attempts to fix some of its issues relating to updates and restarts and perhaps adds some enhancements. All credit for the initial work goes to j0s0n.
+This is a reverse-engineered[^5] version of *j0s0n/scum-wine*, fixing update/restart issues and adding some enhancements. Credit for the original work goes to j0s0n.
 
 [^1]: Use `docker compose logs -f` to check the process.  
 Once you see something like `scum-server  | LogBattlEye: Display: Config entry: MasterPort 8037`  
 in the logs, your game server should be ready to accept player connections.
 
-[^2]: SCUM has a weird way to assign the ports necessary for gameplay. It will always use two ports right after the assigned `GAMEPORT`. For example if your `GAMEPORT` is 7777, then it will always use 7778 and 7779 for various things as well. This also results in being 7779 the port for players to connect even though 7777 is configure. Ridiculous and dumb IMHO but it is what it is.
+[^2]: SCUM uses 3 ports automatically: your `GAMEPORT` plus the next two (e.g., 7777 → 7778, 7779). Players connect on the **third** port (7779).  
+Why this complexity? Who knows. The game developers decided this was a good idea...
 
-[^3]: After the SCUM game server has fully started with the specific Docker image, I launch my game client and connect to it. If I can join the game and play a bit without issues, I consider the image *tested and working*.
+[^3]: "Tested and working" means I personally joined and briefly played on the server without issues.
 
-[^4]: SCUM game server is known for having memory leaks due to poor design which is the reason most servers are restarted every few hours. If a server runs for too long or suffers from low memory initially, it could run out of memory and therefore being forcefully killed causing potential data loss and/or corruption.  
-This feature is trying to prevent this by initiating a graceful shutdown when the system-wide memory usage exceeds a specific value.
+[^4]: SCUM server suffers from memory leaks due to poor design. Most servers restart every few hours to avoid running out of memory, which can crash the server and corrupt data. This feature tries to initiate a graceful shutdown before that happens.
 
 [^5]: As the author of the original image [seems reluctant to provide the *Dockerfile*](https://steamcommunity.com/app/513710/discussions/0/603033663617122208/?ctp=3#c678482693017642366), I decided to take matters into my own hands.  
 For the reason above the original image should be considered closed-source/proprietary.
 
-[![EvilOlaf - scum](https://img.shields.io/static/v1?label=EvilOlaf&message=scum&color=blue&logo=github)](https://github.com/EvilOlaf/scum "Go to GitHub repo")
-[![stars - scum](https://img.shields.io/github/stars/EvilOlaf/scum?style=social)](https://github.com/EvilOlaf/scum)
-[![forks - scum](https://img.shields.io/github/forks/EvilOlaf/scum?style=social)](https://github.com/EvilOlaf/scum)
 [![GitHub tag](https://img.shields.io/github/tag/EvilOlaf/scum?include_prereleases=&sort=semver&color=blue)](https://github.com/EvilOlaf/scum/releases/)
-![maintained - yes](https://img.shields.io/badge/maintained-yes-blue)
-[![OS - Linux](https://img.shields.io/badge/OS-Linux-blue?logo=linux&logoColor=white)](https://www.linux.org/ "Go to Linux homepage")
-[![Made with Docker](https://img.shields.io/badge/Made_with-Docker-blue?logo=docker&logoColor=white)](https://www.docker.com/ "Go to Docker homepage")
+[![stars - scum](https://img.shields.io/github/stars/EvilOlaf/scum?style=social)](https://github.com/EvilOlaf/scum)
+[![EvilOlaf - scum](https://img.shields.io/static/v1?label=EvilOlaf&message=scum&color=blue&logo=github)](https://github.com/EvilOlaf/scum)
+

@@ -91,6 +91,28 @@ if [ -z "$SCUM_PID" ]; then
     exit 1
 fi
 
+# Memory watchdog - monitor memory usage and trigger graceful shutdown if critical
+MEMORY_THRESHOLD=${MEMORY_THRESHOLD_PERCENT:-95}
+CHECK_INTERVAL=${MEMORY_CHECK_INTERVAL:-60}
+
+if [ "$MEMORY_THRESHOLD" -gt 0 ]; then
+    echo "Memory watchdog enabled: shutdown at ${MEMORY_THRESHOLD}% memory usage (checking every ${CHECK_INTERVAL}s)"
+    (
+        while true; do
+            MEM_USAGE=$(free | awk '/Mem/{printf("%.0f"), $3/$2*100}')
+            if [ "$MEM_USAGE" -ge "$MEMORY_THRESHOLD" ]; then
+                echo "Memory watchdog triggered at ${MEM_USAGE}% memory usage! Attempt graceful shutdown to prevent data loss..."
+                kill -INT "$SCUM_PID" 2>/dev/null || true
+                break
+            fi
+            sleep $CHECK_INTERVAL
+        done
+    ) &
+    echo "Memory watchdog started."
+else
+    echo "Memory watchdog disabled (MEMORY_THRESHOLD_PERCENT set to 0)"
+fi
+
 # Now that SCUM_PID is known, set up signal handlers
 trap shutdown SIGTERM SIGINT
 

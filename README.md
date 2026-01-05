@@ -1,7 +1,8 @@
 # SCUM Dedicated Server - dockerized
 
 > **What is this?**  
-> A Docker container that runs a SCUM dedicated server on Linux. No manual Wine setup needed—everything is pre-configured and ready to go.
+> A Docker container that runs a SCUM dedicated server on Linux.
+> No manual Wine setup needed — everything is pre-configured and ready to go.
 
 ## :checkered_flag: Quick start
 

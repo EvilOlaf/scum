@@ -19,6 +19,7 @@
 - *SCUM server* startup script, which
 - - installs/updates [*steamcmd*](https://developer.valvesoftware.com/wiki/SteamCMD)
 - - installs/updates *SCUM dedicated server* on startup
+- - runs a watchdog to avoid crashes due to low memory
 
 ### :arrow_right: Requirements
 

@@ -105,12 +105,12 @@ if ! [[ "$CHECK_INTERVAL" =~ ^[0-9]+$ ]] || [ "$CHECK_INTERVAL" -le 0 ]; then
 fi
 
 if [ "$MEMORY_THRESHOLD" -gt 0 ]; then
-    echo "Memory watchdog enabled: shutdown when available memory drops below ${MEMORY_THRESHOLD}% (checking every ${CHECK_INTERVAL}s)"
+    echo "Memory watchdog enabled: shutdown when available memory usag exceeds ${MEMORY_THRESHOLD}% (checking every ${CHECK_INTERVAL}s)"
     (
         while true; do
-            MEM_USAGE=$(free | awk '/Mem/{printf("%.0f"), $7/$2*100}')
-            if [ "$MEM_USAGE" -le "$MEMORY_THRESHOLD" ]; then
-                echo "Memory watchdog triggered: available memory is ${MEM_USAGE}%! Initiating graceful shutdown to prevent data loss..."
+            MEM_USAGE=$(free | awk '/Mem/{printf("%.0f"), $2/$7*100}')
+            if [ "$MEM_USAGE" -ge "$MEMORY_THRESHOLD" ]; then
+                echo "Memory watchdog triggered: memory usage is ${MEM_USAGE}%! Initiating graceful shutdown to prevent data loss..."
                 kill -INT "$SCUM_PID" 2>/dev/null || true
                 break
             fi

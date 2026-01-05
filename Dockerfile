@@ -37,14 +37,5 @@ RUN wineboot --init
 COPY start-server.sh /opt/start-server.sh
 RUN chmod +x /opt/start-server.sh
 
-EXPOSE 27020/udp
-EXPOSE 27015/udp
-EXPOSE 27015/tcp
-EXPOSE 7777/udp
-EXPOSE 7777/tcp
-EXPOSE 7778/udp
-EXPOSE 7778/tcp
-EXPOSE 7779/udp
-EXPOSE 7779/tcp
 ENV GSLT_TOKEN=
 CMD ["/opt/start-server.sh"]

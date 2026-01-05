@@ -2,7 +2,7 @@ FROM debian:bookworm-slim
 
 LABEL org.opencontainers.image.title="SCUM Server"
 LABEL org.opencontainers.image.description="Docker image for running a SCUM game server with Wine and SteamCMD on Debian Bookworm"
-LABEL org.opencontainers.image.version="1.4.0"
+LABEL org.opencontainers.image.version="2.2.0"
 LABEL org.opencontainers.image.authors="EvilOlaf"
 LABEL org.opencontainers.image.url="https://github.com/EvilOlaf/scum"
 LABEL org.opencontainers.image.source="https://github.com/EvilOlaf/scum"

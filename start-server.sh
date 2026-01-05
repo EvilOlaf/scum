@@ -95,6 +95,15 @@ fi
 MEMORY_THRESHOLD=${MEMORY_THRESHOLD_PERCENT:-95}
 CHECK_INTERVAL=${MEMORY_CHECK_INTERVAL:-60}
 
+if ! [[ "$MEMORY_THRESHOLD" =~ ^[0-9]+$ ]] || [ "$MEMORY_THRESHOLD" -le 0 ]; then
+    echo "WARNING: Invalid MEMORY_THRESHOLD_PERCENT value '$MEMORY_THRESHOLD_PERCENT'. Using default: 90"
+    MEMORY_THRESHOLD=90
+fi
+if ! [[ "$CHECK_INTERVAL" =~ ^[0-9]+$ ]] || [ "$CHECK_INTERVAL" -le 0 ]; then
+    echo "WARNING: Invalid MEMORY_CHECK_INTERVAL value '$MEMORY_CHECK_INTERVAL'. Using default: 60"
+    CHECK_INTERVAL=60
+fi
+
 if [ "$MEMORY_THRESHOLD" -gt 0 ]; then
     echo "Memory watchdog enabled: shutdown at ${MEMORY_THRESHOLD}% memory usage (checking every ${CHECK_INTERVAL}s)"
     (

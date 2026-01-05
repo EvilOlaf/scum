@@ -69,6 +69,14 @@ Need different time or interval but lacking knowledge of cron? Check [crontab.gu
 
 In your `docker-compose.yml` set `ADDITIONALFLAGS=-nobattleye`.  
 
+### How to configure memory watchdog[^5]
+
+```yaml
+environment:
+  - MEMORY_THRESHOLD_PERCENT=95 # Stop SCUM server when system-wide memory usage exceeds %. Set 0 to disable
+  - MEMORY_CHECK_INTERVAL=60    # Check interval in seconds
+```
+
 ### :question: Which Docker image? `main` or `latest`?
 
 Images tagged as `latest` are **tested and known to work.**[^3]
@@ -87,6 +95,9 @@ in the logs, your game server should be ready to accept player connections.
 [^2]: SCUM has a weird way to assign the ports necessary for gameplay. It will always use two ports right after the assigned `GAMEPORT`. For example if your `GAMEPORT` is 7777, then it will always use 7778 and 7779 for various things as well. This also results in being 7779 the port for players to connect even though 7777 is configure. Ridiculous and dumb IMHO but it is what it is.
 
 [^3]: After the SCUM game server has fully started with the specific Docker image, I launch my game client and connect to it. If I can join the game and play a bit without issues, I consider the image *tested and working*.
+
+[^5]: SCUM game server is known for having memory leaks due to poor design which is the reason most servers are restarted every few hours. If a server runs for too long or suffers from low memory initially, it could run out of memory and therefore being forcefully killed causing potential data loss and/or corruption.  
+This feature is trying to prevent this by initiating a graceful shutdown when the system-wide memory usage exceeds a specific value.
 
 [^4]: As the author of the original image [seems reluctant to provide the *Dockerfile*](https://steamcommunity.com/app/513710/discussions/0/603033663617122208/?ctp=3#c678482693017642366), I decided to take matters into my own hands.  
 For the reason above the original image should be considered closed-source/proprietary.

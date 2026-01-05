@@ -8,6 +8,8 @@ services:
       - QUERYPORT=27015
       - MAXPLAYERS=32
       - ADDITIONALFLAGS=
+      - MEMORY_THRESHOLD_PERCENT=95
+      - MEMORY_CHECK_INTERVAL=60
     ports:
       - "7777:7777/udp"
       - "7777:7777/tcp"

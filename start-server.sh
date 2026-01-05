@@ -69,7 +69,7 @@ xvfb-run --auto-servernum --server-args="-screen 0 1024x768x24" \
     -port=${GAMEPORT:-7777} \
     -QueryPort=${QUERYPORT:-27015} \
     -MaxPlayers=${MAXPLAYERS:-32} \
-    &
+    "${ADDITIONALFLAGS}" &
 
 WRAPPER_PID=$!
 echo "Server wrapper started with PID $WRAPPER_PID"

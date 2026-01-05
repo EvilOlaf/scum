@@ -60,8 +60,9 @@ In your `docker-compose.yml` adjust `GAMEPORT`[^2] and `QUERYPORT`.
 
 ### :question: How to customize *SCUM server*
 
-All server data is exposed in the `scumserver-data` folder.  
-For further information check [here](https://www.google.com/search?q=scum+server+settings).
+Server config files are in the `scumserver-data` folder. 
+Providing instructions for in-game customization would be out of scope of this project.  
+Therefore please refer to [Google](https://www.google.com/search?q=scum+server+settings).
 
 ### :question: How to automatically restart every X hours
 
@@ -74,7 +75,7 @@ Need different time or interval but lacking knowledge of cron? Check [crontab.gu
 
 In your `docker-compose.yml` set `ADDITIONALFLAGS=-nobattleye`.  
 
-### How to configure memory watchdog[^4]
+### :question: How to configure memory watchdog[^4]
 
 Edit your `docker-compose.yml` file:
 ```yaml
@@ -92,7 +93,7 @@ Any other tag represents active development and/or automated **untested** builds
 
 Some port exposures are unnecessary. However, I could not find clear documentation which ports and protocols are actually required. Exposing additional ports/protocols won't cause harm.
 
-This is a reverse-engineered[^5] version of *j0s0n/scum-wine*, fixing update/restart issues and ~~perhaps~~ adds some enhancements. Credit for the original work goes to j0s0n.
+This is a reverse-engineered[^5] version of *j0s0n/scum-wine*, fixing update/restart issues and adding some enhancements. Credit for the original work goes to j0s0n.
 
 [^1]: Use `docker compose logs -f` to check the process.  
 Once you see something like `scum-server  | LogBattlEye: Display: Config entry: MasterPort 8037`  
@@ -111,3 +112,4 @@ For the reason above the original image should be considered closed-source/propr
 [![GitHub tag](https://img.shields.io/github/tag/EvilOlaf/scum?include_prereleases=&sort=semver&color=blue)](https://github.com/EvilOlaf/scum/releases/)
 [![stars - scum](https://img.shields.io/github/stars/EvilOlaf/scum?style=social)](https://github.com/EvilOlaf/scum)
 [![EvilOlaf - scum](https://img.shields.io/static/v1?label=EvilOlaf&message=scum&color=blue&logo=github)](https://github.com/EvilOlaf/scum)
+

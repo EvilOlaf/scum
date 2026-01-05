@@ -22,7 +22,7 @@ services:
       - ./steamcmd:/opt/steamcmd:z
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "sh", "-c", "pgrep -f 'Z:.*SCUMServer.exe' > /dev/null && nc -zv 127.0.0.1 $((GAMEPORT+2)) || exit 1"]
+      test: ["CMD", "sh", "-c", "pgrep -f 'Z:.*SCUMServer.exe' > /dev/null && nc -z 127.0.0.1 $((GAMEPORT+2)) || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3

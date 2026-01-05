@@ -67,7 +67,7 @@ Need different time or interval but lacking knowledge of cron? Check [crontab.gu
 
 ### :question: How to disable *BattlEye* anti-cheat?
 
-In your `docker-compose.yml` set `ADDITIONALFLAGS="-nobattleye"`.  
+In your `docker-compose.yml` set `ADDITIONALFLAGS=-nobattleye`.  
 
 ### :question: Which Docker image? `main` or `latest`?
 

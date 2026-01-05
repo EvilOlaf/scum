@@ -69,7 +69,7 @@ Need different time or interval but lacking knowledge of cron? Check [crontab.gu
 
 In your `docker-compose.yml` set `ADDITIONALFLAGS=-nobattleye`.  
 
-### How to configure memory watchdog[^5]
+### How to configure memory watchdog[^4]
 
 ```yaml
 environment:
@@ -86,7 +86,7 @@ Any other tag represents active development and/or automated **untested** builds
 
 I am certain some port exposures are unnecessary. However, I could not find clear documentation on which ports and protocols are actually required. The SCUM server's port calculation behaviour doesn't help either. Exposing additional ports should not cause any harm.
 
-This image started as reverse-engineered[^4] version of the *j0s0n/scum-wine* Docker image. It attempts to fix some of its issues relating to updates and restarts and perhaps adds some enhancements. All credit for the initial work goes to j0s0n.
+This image started as reverse-engineered[^5] version of the *j0s0n/scum-wine* Docker image. It attempts to fix some of its issues relating to updates and restarts and perhaps adds some enhancements. All credit for the initial work goes to j0s0n.
 
 [^1]: Use `docker compose logs -f` to check the process.  
 Once you see something like `scum-server  | LogBattlEye: Display: Config entry: MasterPort 8037`  
@@ -96,10 +96,10 @@ in the logs, your game server should be ready to accept player connections.
 
 [^3]: After the SCUM game server has fully started with the specific Docker image, I launch my game client and connect to it. If I can join the game and play a bit without issues, I consider the image *tested and working*.
 
-[^5]: SCUM game server is known for having memory leaks due to poor design which is the reason most servers are restarted every few hours. If a server runs for too long or suffers from low memory initially, it could run out of memory and therefore being forcefully killed causing potential data loss and/or corruption.  
+[^4]: SCUM game server is known for having memory leaks due to poor design which is the reason most servers are restarted every few hours. If a server runs for too long or suffers from low memory initially, it could run out of memory and therefore being forcefully killed causing potential data loss and/or corruption.  
 This feature is trying to prevent this by initiating a graceful shutdown when the system-wide memory usage exceeds a specific value.
 
-[^4]: As the author of the original image [seems reluctant to provide the *Dockerfile*](https://steamcommunity.com/app/513710/discussions/0/603033663617122208/?ctp=3#c678482693017642366), I decided to take matters into my own hands.  
+[^5]: As the author of the original image [seems reluctant to provide the *Dockerfile*](https://steamcommunity.com/app/513710/discussions/0/603033663617122208/?ctp=3#c678482693017642366), I decided to take matters into my own hands.  
 For the reason above the original image should be considered closed-source/proprietary.
 
 [![EvilOlaf - scum](https://img.shields.io/static/v1?label=EvilOlaf&message=scum&color=blue&logo=github)](https://github.com/EvilOlaf/scum "Go to GitHub repo")

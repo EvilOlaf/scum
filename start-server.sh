@@ -34,7 +34,8 @@ echo "Update SteamCMD and SCUM dedicated server..."
 
 echo "Starting SCUM dedicated server..."
 
-# Handle shutdown signals gracefully
+# Handle shutdown signals gracefully, suppress false positive shellcheck warning
+# shellcheck disable=SC2329
 shutdown() {
     echo "Received shutdown signal, stopping server..."
     if [ -n "$SCUM_PID" ]; then
@@ -63,6 +64,8 @@ shutdown() {
 }
 
 # Start server in background so we can handle signals
+# Disable shellcheck warning, quoting does more harm than use in this particular case
+# shellcheck disable=SC2086
 xvfb-run --auto-servernum --server-args="-screen 0 1024x768x24" \
   wine /opt/scumserver/SCUM/Binaries/Win64/SCUMServer.exe \
     -log \
@@ -130,4 +133,3 @@ wait $WRAPPER_PID
 exit_code=$?
 echo "Server exited with code $exit_code"
 exit $exit_code
-

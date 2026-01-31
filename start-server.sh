@@ -1,5 +1,17 @@
 #!/bin/bash
 
+cat << 'EOF'
+                      _/_/_/    _/_/_/  _/    _/  _/      _/
+                   _/        _/        _/    _/  _/_/  _/_/
+                    _/_/    _/        _/    _/  _/  _/  _/
+                       _/  _/        _/    _/  _/      _/
+                _/_/_/      _/_/_/    _/_/    _/      _/
+
+                           DEDICATED SERVER
+                   https://github.com/EvilOlaf/scum
+
+EOF
+
 # workaround to avoid breaking existing installations
 # if PORT is still used in docker-compose.yml, move its value to GAMEPORT and warn user.
 if [[ -n "${PORT}" ]]; then

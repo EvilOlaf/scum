@@ -7,7 +7,8 @@ cat << 'EOF'
                        _/  _/        _/    _/  _/      _/
                 _/_/_/      _/_/_/    _/_/    _/      _/
 
-                       DEDICATED SERVER
+                           DEDICATED SERVER
+                   https://github.com/EvilOlaf/scum
 
 EOF
 

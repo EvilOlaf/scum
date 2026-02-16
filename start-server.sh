@@ -127,7 +127,6 @@ if [ "$MEMORY_THRESHOLD" -gt 0 ]; then
             if [ "$MEM_USAGE" -ge "$MEMORY_THRESHOLD" ]; then
                 echo "Memory watchdog triggered: memory usage is ${MEM_USAGE}%! Initiating graceful shutdown to prevent data loss..."
                 shutdown
-                break
             fi
             sleep $CHECK_INTERVAL
         done

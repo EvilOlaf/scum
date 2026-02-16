@@ -67,7 +67,7 @@ Therefore please refer to [Google](https://www.google.com/search?q=scum+server+s
 ### :question: How to automatically restart every X hours
 
 This image does not come with an automated way to periodically restart.  
-You can set this up using a scheduled task (`cronjob`), like this:
+You can set this up using a scheduled task (`cronjob`), like this:  
 `0 */6 * * * YourDockerUser cd /path/to/docker/compose/file && docker compose restart`  
 Need different time or interval but lacking knowledge of cron? Check [crontab.guru](https://crontab.guru/)
 

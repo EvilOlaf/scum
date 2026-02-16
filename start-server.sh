@@ -126,7 +126,7 @@ if [ "$MEMORY_THRESHOLD" -gt 0 ]; then
             MEM_USAGE=$(LC_ALL=C free | awk '/Mem/{printf("%.0f"), ($2-$7)/$2*100}')
             if [ "$MEM_USAGE" -ge "$MEMORY_THRESHOLD" ]; then
                 echo "Memory watchdog triggered: memory usage is ${MEM_USAGE}%! Initiating graceful shutdown to prevent data loss..."
-                kill -INT "$SCUM_PID" 2>/dev/null || true
+                shutdown
                 break
             fi
             sleep $CHECK_INTERVAL

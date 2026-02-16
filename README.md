@@ -29,7 +29,7 @@
 
 ### :question: How to use plain *Docker* without *compose*
 
-Don't want to use *docker compose*? Check [decomposerize](https://www.decomposerize.com/).
+Check out [decomposerize](https://www.decomposerize.com/).
 
 ### :question: How to customize ports
 
@@ -60,7 +60,7 @@ In your `docker-compose.yml` adjust `GAMEPORT`[^2] and `QUERYPORT`.
 
 ### :question: How to customize *SCUM server*
 
-Server config files are in the `scumserver-data` folder. 
+Server config files are in the `scumserver-data` folder.  
 Providing instructions for in-game customization would be out of scope of this project.  
 Therefore please refer to [Google](https://www.google.com/search?q=scum+server+settings).
 
@@ -80,7 +80,7 @@ In your `docker-compose.yml` set `ADDITIONALFLAGS=-nobattleye`.
 Edit your `docker-compose.yml` file:
 ```yaml
 environment:
-  - MEMORY_THRESHOLD_PERCENT=95 # Stop SCUM server when system-wide memory usage exceeds %. Set 0 to disable
+  - MEMORY_THRESHOLD_PERCENT=95 # Stop SCUM server when system-wide memory usage exceeds 95%. Set 0 to disable
   - MEMORY_CHECK_INTERVAL=60    # Check interval in seconds
 ```
 

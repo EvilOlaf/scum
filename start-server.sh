@@ -109,6 +109,7 @@ fi
 # Memory watchdog - monitor memory usage and trigger graceful shutdown if critical
 MEMORY_THRESHOLD=${MEMORY_THRESHOLD_PERCENT:-95}
 CHECK_INTERVAL=${MEMORY_CHECK_INTERVAL:-60}
+MEMORY_WATCHDOG_DEBUG=${MEMORY_WATCHDOG_DEBUG:-false}
 
 if ! [[ "$MEMORY_THRESHOLD" =~ ^[0-9]+$ ]]; then
     echo "WARNING: Invalid MEMORY_THRESHOLD_PERCENT value '$MEMORY_THRESHOLD_PERCENT'. Forcing default: 95"
@@ -120,13 +121,16 @@ if ! [[ "$CHECK_INTERVAL" =~ ^[0-9]+$ ]] || [ "$CHECK_INTERVAL" -le 0 ]; then
 fi
 
 if [ "$MEMORY_THRESHOLD" -gt 0 ]; then
-    echo "Memory watchdog enabled: SCUM server will initiate graceful shutdown if system-wide memory usage exceeds ${MEMORY_THRESHOLD}% (checking every ${CHECK_INTERVAL}s)"
+    STARTUP_MEMORY_USAGE=$(LC_ALL=C free | awk '/Mem/{printf("%.0f"), ($2-$7)/$2*100}')
+    echo "Memory watchdog enabled: SCUM server will initiate graceful shutdown if system-wide memory usage exceeds ${MEMORY_THRESHOLD}% (currently ${STARTUP_MEMORY_USAGE}%, checking every ${CHECK_INTERVAL}s)"
     (
         while true; do
             MEM_USAGE=$(LC_ALL=C free | awk '/Mem/{printf("%.0f"), ($2-$7)/$2*100}')
             if [ "$MEM_USAGE" -ge "$MEMORY_THRESHOLD" ]; then
                 echo "Memory watchdog triggered: memory usage is ${MEM_USAGE}%! Initiating graceful shutdown to prevent data loss..."
                 shutdown
+            elif [ "$MEMORY_WATCHDOG_DEBUG" = "true" ]; then
+                echo "Memory watchdog debug: current memory usage is ${MEM_USAGE}%"
             fi
             sleep $CHECK_INTERVAL
         done

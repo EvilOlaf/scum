@@ -93,12 +93,13 @@ Any other tag represents active development and/or automated **untested** builds
 ### :question: Game and server version don't match / cannot login
 
 > [!NOTE]
-> This is typically caused by a long-standing SteamCMD bug (affecting various games since 2015) where updates silently fail. Not specific to SCUM or this container.  
-> Check your log for a entry like this: `Error! App '3792580' state is 0x6 after update job."`
+> This is typically caused by a long-standing SteamCMD issue (affecting various games since 2015) where updates silently fail.
+> Not specific to SCUM or this container.  
+> Check your logs for an entry like this: `Error! App '3792580' state is 0x6 after update job."`
 
 **Workarounds that have helped others:**
 - Restart the container multiple times until the update succeeds
-- Delete `appmanifest_*.acf` files in `./scumserver-data/steamapps/` and retry
+- Delete `appmanifest_*.acf` files in `./scumserver-data/steamapps/` and retry forcing steamcmd to validate game files
 - Last resort: back up `./scumserver-data/SCUM/Saved/`, wipe game files, let SteamCMD re-download fresh
 
 

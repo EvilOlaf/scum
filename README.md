@@ -82,6 +82,7 @@ Edit your `docker-compose.yml` file:
 environment:
   - MEMORY_THRESHOLD_PERCENT=95 # Stop SCUM server when system-wide memory usage exceeds 95%. Set 0 to disable
   - MEMORY_CHECK_INTERVAL=60    # Check interval in seconds
+  - MEMORY_WATCHDOG_DEBUG=false # 'true' for status message in log each interval
 ```
 
 ### :question: Which Docker image? `main` or `latest`?

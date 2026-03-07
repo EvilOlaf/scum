@@ -90,6 +90,18 @@ environment:
 Images tagged as `latest` are **tested and known to work.**[^3]
 Any other tag represents active development and/or automated **untested** builds.  
 
+### :question: Game and server version don't match / cannot login
+
+> [!NOTE]
+> This is typically caused by a long-standing SteamCMD bug (affecting various games since 2015) where updates silently fail. Not specific to SCUM or this container.  
+> Check your log for a entry like this: `Error! App '3792580' state is 0x6 after update job."`
+
+**Workarounds that have helped others:**
+- Restart the container multiple times until the update succeeds
+- Delete `appmanifest_*.acf` files in `./scumserver-data/steamapps/` and retry
+- Last resort: back up `./scumserver-data/SCUM/Saved/`, wipe game files, let SteamCMD re-download fresh
+
+
 ## :information_source: Footnotes
 
 Some port exposures are unnecessary. However, I could not find clear documentation which ports and protocols are actually required. Exposing additional ports/protocols won't cause harm.

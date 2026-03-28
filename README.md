@@ -99,7 +99,7 @@ Any other tag represents active development and/or automated **untested** builds
 **Workarounds that have helped others:**
 - Restart the container multiple times until the update succeeds
 - Delete `appmanifest_*.acf` files in `./scumserver-data/steamapps/` and retry, forcing SteamCMD to validate game files
-- Last resort: back up `./scumserver-data/SCUM/Saved/`, wipe game files, let SteamCMD perform a fresh
+- Last resort: back up `./scumserver-data/SCUM/Saved/`, wipe game files, let SteamCMD perform a fresh install, stop, copy `Saved` folder back
 
 
 ## :information_source: Footnotes

@@ -36,7 +36,8 @@ RUN wineboot --init
 
 RUN wget https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks -O winetricks && \
 	chmod +x winetricks && \
-	sh winetricks -q crypt32
+	sh winetricks -q crypt32 && \
+	rm -rf /root/.cache/
 
 # scum server run script
 COPY start-server.sh /opt/start-server.sh

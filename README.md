@@ -14,7 +14,7 @@
 
 ### :arrow_right: Docker image contents
 
-- slim *Debian Bookworm* with [*Wine* 10.0](https://gitlab.winehq.org/wine/wine/-/releases/wine-10.0)
+- slim *Debian Trixie* with [*Wine* 11.0](https://gitlab.winehq.org/wine/wine/-/releases/wine-11.0)
 - pre-configured 64-bit *Wine* prefix
 - *SCUM server* startup script, which
 - - installs/updates [*steamcmd*](https://developer.valvesoftware.com/wiki/SteamCMD)

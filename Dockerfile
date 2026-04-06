@@ -34,7 +34,7 @@ ENV PATH=/opt/steamcmd:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/
 
 RUN wineboot --init
 
-RUN wget https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks -O winetricks && \
+RUN wget https://raw.githubusercontent.com/Winetricks/winetricks/refs/tags/20260125/src/winetricks -O winetricks && \
 	chmod +x winetricks && \
 	sh winetricks -q crypt32 && \
 	rm -rf /root/.cache/

@@ -71,7 +71,7 @@ You can set this up using a scheduled task (`cronjob`), like this:
 `0 */6 * * * YourDockerUser cd /path/to/docker/compose/file && docker compose restart`  
 Need different time or interval but lacking knowledge of cron? Check [crontab.guru](https://crontab.guru/)
 
-### :question: How to disable *BattlEye* anti-cheat?
+### :question: How to disable *BattlEye* anti-cheat
 
 In your `docker-compose.yml` set `ADDITIONALFLAGS=-nobattleye`.  
 
@@ -85,9 +85,9 @@ environment:
   - MEMORY_WATCHDOG_DEBUG=false # 'true' for status message in log each interval
 ```
 
-### :question: Which Docker image? `main` or `latest`?
+### :question: Which Docker image to choose
 
-Images tagged as `latest` are **tested and known to work.**[^3]
+Images tagged as `latest` are **tested and known to work.**[^3]  
 Any other tag represents active development and/or automated **untested** builds.  
 
 ### :question: Game and server version don't match / cannot login

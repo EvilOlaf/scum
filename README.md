@@ -121,8 +121,3 @@ Why this complexity? Who knows. The game developers decided this was a good idea
 
 [^5]: As the author of the original image [seems reluctant to provide the *Dockerfile*](https://steamcommunity.com/app/513710/discussions/0/603033663617122208/?ctp=3#c678482693017642366), I decided to take matters into my own hands.  
 For the reason above the original image should be considered closed-source/proprietary.
-
-[![GitHub tag](https://img.shields.io/github/tag/EvilOlaf/scum?include_prereleases=&sort=semver&color=blue)](https://github.com/EvilOlaf/scum/releases/)
-[![stars - scum](https://img.shields.io/github/stars/EvilOlaf/scum?style=social)](https://github.com/EvilOlaf/scum)
-[![EvilOlaf - scum](https://img.shields.io/static/v1?label=EvilOlaf&message=scum&color=blue&logo=github)](https://github.com/EvilOlaf/scum)
-

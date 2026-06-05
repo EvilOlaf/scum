@@ -10,7 +10,6 @@ LABEL org.opencontainers.image.base.name="debian:trixie-slim"
 
 WORKDIR /opt
 
-# system stuff
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections && \
 	apt-get update && apt-get upgrade -y && apt-get install -y locales && \
 	sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
@@ -19,12 +18,15 @@ ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US:en
 ENV LC_ALL=en_US.UTF-8
 
-# wine, steamcmd
 RUN apt-get install -y wget unzip ca-certificates xvfb xauth x11-utils gnupg procps cabextract
 
 RUN wget -O - https://dl.winehq.org/wine-builds/winehq.key | gpg --dearmor -o /etc/apt/keyrings/winehq-archive.key - && \
 	wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/trixie/winehq-trixie.sources && \
-	dpkg --add-architecture i386 && apt-get update && apt-get install -y --install-recommends winbind winehq-stable && apt-get clean && rm -rf /var/lib/apt/lists/*
+	dpkg --add-architecture i386 && \
+	apt-get update && \
+	apt-get install -y --install-recommends winbind winehq-stable && \
+	apt-get clean && \
+	rm -rf /var/lib/apt/lists/*
 
 ENV WINEDEBUG=-all
 ENV WINEARCH=win64
@@ -39,7 +41,6 @@ RUN wget https://raw.githubusercontent.com/Winetricks/winetricks/refs/tags/20260
 	sh winetricks -q crypt32 && \
 	rm -rf /root/.cache/
 
-# scum server run script
 COPY start-server.sh /opt/start-server.sh
 RUN chmod +x /opt/start-server.sh
 
